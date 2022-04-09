@@ -10,24 +10,34 @@ function startGame() {
 }
 
 function selected(element) {
-    flipCard(element);
+    if (!element.classList.contains('flipped')) {
 
-    registerCard(element);
+        flipCard(element);
 
+        registerCard(element);
+    
+        pairCheck();
+
+        countClicks++;
+    }
 }
 
 function flipCard(element) {
-  if (element.querySelector(".rotation_front-face") === null) {
+    element.classList.add("flipped");
     element.querySelector(".front-card").classList.add("rotation_front-face");
     element.querySelector(".back-card").classList.add("rotation_back-face");
-
-    countClicks++;
   }
-}
 
 function registerCard(element) {
-
+    selectedItemsCheck.push(element.getAttribute("id"));
 }
 
+function pairCheck() {
+    if (selectedItemsCheck.length === 2) {
+        console.log("ok");
+        
+        selectedItemsCheck = [];
+    }
+}
 
 startGame();
