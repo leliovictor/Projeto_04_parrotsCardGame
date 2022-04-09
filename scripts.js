@@ -34,10 +34,19 @@ function registerCard(element) {
 
 function pairCheck() {
     if (selectedItemsCheck.length === 2) {
-        console.log("ok");
-        
+        if (selectedItemsCheck[0] === selectedItemsCheck[1]) {
+            console.log("sao iguais");
+        } else {
+            console.log("não sao iguais");
+            removeFlip();
+        }
+
         selectedItemsCheck = [];
     }
+}
+
+function removeFlip() {
+    
 }
 
 startGame();
