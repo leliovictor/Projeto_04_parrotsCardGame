@@ -1,4 +1,4 @@
-let numberCards, selectedItemsCheck = [], countClicks = 0;
+let numberCards, selectedItemsCheck = [], flipBack=[], countClicks = 0;
 
 function startGame() {
   numberCards = prompt("Com quantas cartas deseja jogar? Insira um numero par, entre 4 e 14.");
@@ -29,16 +29,16 @@ function flipCard(element) {
   }
 
 function registerCard(element) {
-    selectedItemsCheck.push(element.getAttribute("id"));
+    selectedItemsCheck.push(element);
 }
 
 function pairCheck() {
     if (selectedItemsCheck.length === 2) {
-        if (selectedItemsCheck[0] === selectedItemsCheck[1]) {
-            console.log("sao iguais");
+        if (selectedItemsCheck[0].getAttribute('id') === selectedItemsCheck[1].getAttribute('id')) {
+            console.log('sao iguais');
         } else {
-            console.log("não sao iguais");
-            removeFlip();
+            flipBack.push(selectedItemsCheck[0],selectedItemsCheck[1]);
+            setTimeout(removeFlip,2000);
         }
 
         selectedItemsCheck = [];
@@ -46,7 +46,12 @@ function pairCheck() {
 }
 
 function removeFlip() {
-    
+    for (let i = 0; i < 2; i++) {
+        flipBack[0].classList.remove("flipped");
+        flipBack[0].querySelector(".front-card").classList.remove("rotation_front-face");
+        flipBack[0].querySelector(".back-card").classList.remove("rotation_back-face");
+        flipBack.shift();
+    }
 }
 
 startGame();

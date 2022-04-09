@@ -52,12 +52,14 @@ main {
     box-sizing: border-box;
     border-radius: 5px;
     padding: 24px 7px 22px 10px;
+    transition: all .5s linear;
 }
 
 .back-card {
     box-sizing: border-box;
     padding: 24px 7px 22px 10px;
-    transform: rotateY(-180deg)
+    transform: rotateY(-180deg);
+    transition: all .5s linear;
 }
 
 .rotation_front-face {
