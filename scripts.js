@@ -10,16 +10,20 @@ function startGame() {
     numberCards = parseInt(prompt("Com quantas cartas deseja jogar? Insira um numero par, entre 4 e 14."));
   }
 
+  shuffleCardStyle();
+
   deal(numberCards);
 
 }
 
-function shuffleCardStyle() {} /*Implementar para misturar a array inicial para imagens diferentes a cada jogo*/
+function shuffleCardStyle() {
+    cardStyle.sort(shuffle);
+}
 
 function deal(amount) {
     let cardsGame = cardStyle.slice(0,amount/2);
     cardsGame.push(...cardsGame);
-    cardsGame = cardsGame.sort(comparador);
+    cardsGame = cardsGame.sort(shuffle);
 
     const section = document.querySelector(".cards");
     for (let i = 0; i < amount; i++) {
@@ -45,6 +49,8 @@ function selected(element) {
     
         pairCheck();
 
+        endGameCheck();
+
         countClicks++;
     }
 }
@@ -62,6 +68,8 @@ function registerCard(element) {
 function pairCheck() {
     if (selectedItemsCheck.length === 2) {
         if (selectedItemsCheck[0].querySelector(".back-card img").getAttribute('src') === selectedItemsCheck[1].querySelector(".back-card img").getAttribute('src')) {
+        selectedItemsCheck[0].classList.add("found");
+        selectedItemsCheck[1].classList.add("found");
         } else {
             flipBack.push(selectedItemsCheck[0],selectedItemsCheck[1]);
             setTimeout(removeFlip,1000);
@@ -80,10 +88,18 @@ function removeFlip() {
     }
 }
 
+function endGameCheck() {
+    let cardsFound = document.querySelectorAll(".found");
+    if (cardsFound.length === numberCards) {
+        setTimeout(callWin,200);
+    }
+}
 
+function callWin() {
+    return alert(`Parabéns, você ganhou em ${countClicks} jogadas!`);
+}
 
-
-function comparador() { 
+function shuffle() { 
 	return Math.random() - 0.5; 
 }
 
