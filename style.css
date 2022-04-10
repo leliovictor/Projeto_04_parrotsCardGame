@@ -26,12 +26,20 @@ main {
 
 }
 
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 1080px;
+}
+
 .card {
     width: 117px;
     height: 146px;
     position: relative;
-}
 
+    margin: 17px 17px;
+}
 
 .front-card, .back-card {
     width: 100%;
@@ -73,3 +81,24 @@ main {
 }
 
 
+@media (max-width: 614px) {
+    
+    .cards {
+        flex-direction: column;
+
+    }
+
+    header h1 {
+        width: 312px;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+    }
+
+    .card:first-child {
+        margin-top: 0px;
+    }
+
+
+    
+}

@@ -13,7 +13,9 @@ function startGame() {
   shuffleCardStyle();
 
   deal(numberCards);
-
+  
+  organizeLayout(numberCards);
+  
 }
 
 function shuffleCardStyle() {
@@ -47,9 +49,7 @@ function selected(element) {
 
         registerCard(element);
     
-        pairCheck();
-
-        endGameCheck();
+        pairCheck();        
 
         countClicks++;
     }
@@ -75,6 +75,8 @@ function pairCheck() {
             setTimeout(removeFlip,1000);
         }
 
+        endGameCheck();
+
         selectedItemsCheck = [];
     }
 }
@@ -97,10 +99,19 @@ function endGameCheck() {
 
 function callWin() {
     return alert(`Parabéns, você ganhou em ${countClicks} jogadas!`);
+
+    /*playAgain(){} <-- verificar se quer jogar de novo, precisa zerar os clicks, 
+    o tempo e o layout para chamar novamente o startgame() */
 }
 
 function shuffle() { 
 	return Math.random() - 0.5; 
 }
 
+function organizeLayout(cardAmount) {
+    let cubicRegression = (-0.0347)*cardAmount**3+1.3393*cardAmount**2+58.1746*cardAmount+148.5714
+    document.querySelector(".cards").style.maxWidth=`${Math.round(cubicRegression)}px`;
+}
+
 startGame();
+
