@@ -19,6 +19,15 @@ header h1 {
     color: #75B79E;
 }
 
+.timer {
+    font-family: 'Roboto';
+    font-size: 30px;
+    position: absolute;
+    right: 10%;
+    top: 15%;
+    color: #75B79E;
+}
+
 main {
     width: 100%;
     display: flex;
@@ -30,7 +39,6 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-width: 1080px;
 }
 
 .card {

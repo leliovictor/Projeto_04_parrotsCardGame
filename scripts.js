@@ -1,6 +1,5 @@
-let numberCards, selectedItemsCheck=[], flipBack=[], countClicks = 0;
+let numberCards, selectedItemsCheck=[], flipBack=[], countClicks = 0, timer = 0, idInterval;
 const cardStyle = ["bobrossparrot.gif","explodyparrot.gif","fiestaparrot.gif","metalparrot.gif","revertitparrot.gif","tripletsparrot.gif","unicornparrot.gif"];
-
 
 function startGame() {
   numberCards = parseInt(prompt("Com quantas cartas deseja jogar? Insira um numero par, entre 4 e 14."));
@@ -15,6 +14,8 @@ function startGame() {
   deal(numberCards);
   
   organizeLayout(numberCards);
+
+  idInterval = setInterval(countTime,1000);
   
 }
 
@@ -98,10 +99,30 @@ function endGameCheck() {
 }
 
 function callWin() {
-    return alert(`Parabéns, você ganhou em ${countClicks} jogadas!`);
+    alert(`Parabéns, você ganhou em ${countClicks} jogadas! O jogo durou ${timer} segundos.`);
+    
+    clearInterval(idInterval);
+    
+    playAgain();
+    
+}
 
-    /*playAgain(){} <-- verificar se quer jogar de novo, precisa zerar os clicks, 
-    o tempo e o layout para chamar novamente o startgame() */
+function countTime() {
+    timer++;
+    document.querySelector(".timer").innerHTML = timer;
+}
+
+function playAgain() {
+    let playAgain = prompt("Gostaria de jogar novamente? Responda: 'sim' ou 'não'.").toLowerCase();
+    
+    if (playAgain === "sim") {
+        countClicks = 0;
+        document.querySelector(".timer").innerHTML = 0;
+        timer = 0;
+        document.querySelectorAll('.card').forEach((card) => card.remove());
+
+        startGame();
+    }
 }
 
 function shuffle() { 
