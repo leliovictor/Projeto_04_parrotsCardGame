@@ -5,8 +5,7 @@ function startGame() {
   numberCards = parseInt(prompt("Com quantas cartas deseja jogar? Insira um numero par, entre 4 e 14."));
 
   while (numberCards < 4 || numberCards > 14 || numberCards % 2 !== 0) {
-    alert("Número inválido, insira um número par entre 4 e 14.");
-    numberCards = parseInt(prompt("Com quantas cartas deseja jogar? Insira um numero par, entre 4 e 14."));
+    numberCards = parseInt(prompt("Número inválido, insira um número par entre 4 e 14."));
   }
 
   shuffleCardStyle();
@@ -114,7 +113,10 @@ function countTime() {
 
 function playAgain() {
     let playAgain = prompt("Gostaria de jogar novamente? Responda: 'sim' ou 'não'.").toLowerCase();
-    
+    while (playAgain != "sim" && playAgain != "não") {
+        playAgain = prompt("Resposta inválida, escreva: 'sim' ou 'não'").toLowerCase();
+    }
+
     if (playAgain === "sim") {
         countClicks = 0;
         document.querySelector(".timer").innerHTML = 0;
